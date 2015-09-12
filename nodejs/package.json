@@ -1,0 +1,23 @@
+{
+	"name": "http-router",
+	"version": "0.0.1",
+	"description": "This extension routes specific http URLs to callback functions.",
+	"author": "NIPE-SYSTEMS <dev.nipe.systems@gmail.com>",
+	"scripts": {
+		"start": "node server.example.js"
+	},
+	"main": "http-router.js",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/NIPE-SYSTEMS/http-router"
+	},
+	"bugs": {
+		"url": "https://github.com/NIPE-SYSTEMS/http-router/issues"
+	},
+	"keywords": [
+		"http",
+		"router",
+		"callback"
+	],
+	"license": "GPL-3.0"
+}
