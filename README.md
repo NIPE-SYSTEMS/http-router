@@ -6,4 +6,4 @@ This extension routes specific http URLs to callback functions. The extension cr
 
 lastest GPL-license (see LICENSE-file)
 
-Copyright (C) 2015 NIPE-SYSTEMS, [http://www.nipe-systems.de](http://nipe-systems.de)
+Copyright (C) 2015 NIPE-SYSTEMS, [http://nipe-systems.de](http://nipe-systems.de)
