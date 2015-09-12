@@ -55,18 +55,6 @@ function httpServerAdd(bindAddress, port)
 			
 			// console.log(pathname);
 			
-			// remove leading slash
-			if(pathname[0] == "/")
-			{
-				pathname = pathname.substr(1, pathname.length - 1);
-			}
-			
-			// remove trailing slash
-			if(pathname.length > 0 && pathname[pathname.length - 1] == "/")
-			{
-				pathname = pathname.substr(0, router.url.length - 1);
-			}
-			
 			// call callback for first router with url
 			for(var i in this.routers)
 			{
@@ -150,18 +138,6 @@ function httpRouterAdd(options, callback)
 		router.url = options.url;
 	}
 	
-	// remove leading slash
-	if(router.url[0] == "/")
-	{
-		router.url = router.url.substr(1, router.url.length - 1);
-	}
-	
-	// remove trailing slash
-	if(router.url.length > 0 && router.url[router.url.length - 1] == "/")
-	{
-		router.url = router.url.substr(0, router.url.length - 1);
-	}
-	
 	// save callback
 	router.callback = callback;
 	
@@ -188,32 +164,6 @@ function httpServerShutdown()
 		value.server.close();
 	});
 }
-
-// httpRouterAdd({ port: 8080, url: "hello/world" }, function(error, url, data)
-// {
-// 	// console.log(data);
-	
-// 	return "Hello World 1";
-// });
-
-// httpRouterAdd({ port: 8080, url: "/bla" }, function(error, url, data)
-// {
-// 	// console.log(data);
-	
-// 	return "Hello World 2";
-// });
-
-// httpRouterAdd({ port: 8080, url: "*/world" }, function(error, url, data)
-// {
-// 	console.log(url);
-	
-// 	return "Hello World 3";
-// });
-
-// process.on("SIGINT", function()
-// {
-// 	httpServerShutdown();
-// });
 
 module.exports.add = httpRouterAdd;
 module.exports.stop = httpServerShutdown;
