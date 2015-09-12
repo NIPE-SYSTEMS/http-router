@@ -174,6 +174,81 @@ function httpRouterAdd(options, callback)
 	foundServer.routers.push(router);
 }
 
+function httpRouterRemove(options)
+{
+	// validate options object
+	if(typeof options != "object")
+	{
+		throw new Error("Invalid options.");
+		
+		return;
+	}
+	
+	// default bind address
+	if(options.bindAddress === undefined)
+	{
+		options.bindAddress = "0.0.0.0";
+	}
+	else
+	{
+		options.bindAddress = options.bindAddress;
+	}
+	
+	// default port
+	if(options.port === undefined)
+	{
+		options.port = 80;
+	}
+	else
+	{
+		options.port = options.port;
+	}
+	
+	// default url
+	if(options.url === undefined)
+	{
+		options.url = "/";
+	}
+	else
+	{
+		options.url = options.url;
+	}
+	
+	// remove router from server
+	var foundServer = httpServerExists(options.bindAddress, options.port);
+	
+	if(foundServer == null)
+	{
+		throw new Error("Failed to find server for router.");
+		
+		return;
+	}
+	
+	foundServer.routers = foundServer.routers.filter(function(value, key, array)
+	{
+		if(value.url == options.url)
+		{
+			// console.log("Removed router", value);
+			
+			return false;
+		}
+		
+		return true;
+	});
+	
+	// remove server if no more routers are connected
+	if(foundServer.routers.length == 0)
+	{
+		foundServer.server.close();
+		
+		var index = servers.indexOf(foundServer);
+		if(index != -1)
+		{
+			servers.splice(index, 1);
+		}
+	}
+}
+
 function httpServerShutdown()
 {
 	servers.forEach(function(value, key, array)
@@ -183,4 +258,5 @@ function httpServerShutdown()
 }
 
 module.exports.add = httpRouterAdd;
+module.exports.remove = httpRouterRemove;
 module.exports.stop = httpServerShutdown;

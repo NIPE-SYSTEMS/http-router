@@ -17,7 +17,7 @@
 
 var http_router = require("./http-router.js");
 
-http_router.add({ url: "/", port: 8080 }, function(error, url, data)
+http_router.add({ url: "/", port: 8081 }, function(error, url, data)
 {
 	if(error)
 	{
@@ -31,7 +31,7 @@ http_router.add({ url: "/", port: 8080 }, function(error, url, data)
 	return "Hello World from node via http-router.";
 });
 
-http_router.add({ url: "/hello/world", port: 8080 }, function(error, url, data)
+http_router.add({ url: "/hello/world", port: 8081 }, function(error, url, data)
 {
 	if(error)
 	{
@@ -58,6 +58,11 @@ http_router.add({ url: "/*/bar", port: 8080 }, function(error, url, data)
 	
 	return "Hello World from node via http-router.";
 });
+
+setTimeout(function()
+{
+	http_router.remove({ url: "/*/bar", port: 8080 });
+}, 1000);
 
 // gracefully shutdown on SIGINT (<Ctrl> + <C>)
 process.on("SIGINT", function()
