@@ -125,35 +125,10 @@ function httpRouterAdd(options, callback)
 		throw new Error("Callback must be of type \"function\".");
 	}
 	
-	// default bind address
-	if(options.bindAddress === undefined)
-	{
-		options.bindAddress = "0.0.0.0";
-	}
-	else
-	{
-		options.bindAddress = options.bindAddress;
-	}
-	
-	// default port
-	if(options.port === undefined)
-	{
-		options.port = 80;
-	}
-	else
-	{
-		options.port = options.port;
-	}
-	
-	// default url
-	if(options.url === undefined)
-	{
-		router.url = "/";
-	}
-	else
-	{
-		router.url = options.url;
-	}
+	// default options
+	options.bindAddress = (options.bindAddress || "0.0.0.0");
+	options.port = (options.port || 80);
+	router.url = (options.url || "/");
 	
 	// save callback
 	router.callback = callback;
@@ -184,35 +159,10 @@ function httpRouterRemove(options)
 		return;
 	}
 	
-	// default bind address
-	if(options.bindAddress === undefined)
-	{
-		options.bindAddress = "0.0.0.0";
-	}
-	else
-	{
-		options.bindAddress = options.bindAddress;
-	}
-	
-	// default port
-	if(options.port === undefined)
-	{
-		options.port = 80;
-	}
-	else
-	{
-		options.port = options.port;
-	}
-	
-	// default url
-	if(options.url === undefined)
-	{
-		options.url = "/";
-	}
-	else
-	{
-		options.url = options.url;
-	}
+	// default options
+	options.bindAddress = (options.bindAddress || "0.0.0.0");
+	options.port = (options.port || 80);
+	options.url = (options.url || "/");
 	
 	// remove router from server
 	var foundServer = httpServerExists(options.bindAddress, options.port);
